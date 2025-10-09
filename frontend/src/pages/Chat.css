@@ -1,4 +1,7 @@
-@tailwind base;
+/*@tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities;*/
 
+ *{
+    background-color: hsl(0, 5%, 26%);
+ }

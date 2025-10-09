@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+ *{
+  background-color: hsl(0, 5%, 26%);
+ }
 #root {
   max-width: 1280px;
   margin: 0 auto;
