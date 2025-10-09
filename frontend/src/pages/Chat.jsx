@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-
+ 
 const ChatMessage = ({ sender, text }) => {
     const isUser = sender === 'user';
     
@@ -18,7 +18,7 @@ const ChatMessage = ({ sender, text }) => {
           max-w-3xl p-3 shadow-md whitespace-pre-wrap
           ${isUser 
             ? 'bg-gray-100 text-gray-800 rounded-2xl rounded-br-md ml-12' 
-            : 'bg-white text-gray-900 rounded-2xl rounded-tl-md border border-gray-100 mr-12'}
+            : 'bg-gray-700 text-white rounded-2xl rounded-tl-md border border-gray-600 mr-12'}
         `}>
           {text}
         </div>
@@ -36,7 +36,7 @@ const ChatMessage = ({ sender, text }) => {
 
 function Chat() {
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hello! I am a large language model. Ask me anything to start a new chat.' }
+    { sender: 'bot', text: 'Hello! Do you want to talk?' }
   ]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef(null);
@@ -62,13 +62,13 @@ function Chat() {
     const lowerCaseMessage = userMessage.toLowerCase();
     
     if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
-      return 'Hello! I am ready to generate code, write poems, or answer your questions.';
-    } else if (lowerCaseMessage.includes('code')) {
-      return "I specialize in generating and explaining code snippets in various languages, like JavaScript, Python, or even React code!\n\nFor example, I can create a sorting algorithm or a component structure.";
-    } else if (lowerCaseMessage.includes('gemini')) {
-      return "I'm a model built by Google to help you with creative and technical tasks. I strive to be helpful and informative.";
+      return 'Hello! I am here for a chat';
+    } else if (lowerCaseMessage.includes('happy')) {
+      return "That's good to hear. Keep the positive vibes coming!!";
+    } else if (lowerCaseMessage.includes('sad')) {
+      return "I am so sorry to hear that. You should indulge in your favourite activities like listening to music, playing sports or try going for a walk to change the scenery. I hope you feel better soon and if you don't, I am always here.";
     } else {
-      return "I'm still learning! You can try asking me about 'code' or 'Gemini'.";
+      return "I am not completely sure about how you feel.";
     }
   };
 
@@ -98,7 +98,7 @@ function Chat() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full bg-gray-50">
+    <div className="flex flex-col h-screen w-full" style={{ backgroundColor: 'hsl(0, 5%, 26%)' }}>
       
       {/* Main Chat Content Area - Scrolls Independently */}
       <div className="flex-grow overflow-y-auto px-4 sm:px-10 py-8 max-w-4xl mx-auto w-full">
@@ -111,19 +111,19 @@ function Chat() {
       </div>
 
       {/* Fixed Input Area at Bottom */}
-      <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 sm:p-6 flex justify-center w-full">
+      <div className="sticky bottom-0 border-t border-gray-600 p-4 sm:p-6 flex justify-center w-full" style={{ backgroundColor: 'hsl(0, 5%, 26%)' }}>
         <div className="max-w-4xl w-full">
-            <div className="flex items-end bg-gray-100 rounded-3xl shadow-xl p-2 border border-gray-200">
-                
+            <div className="flex items-end bg-gray-700 rounded-3xl shadow-xl p-2 border border-gray-600">
+
                 {/* Textarea for Input */}
                 <textarea
                     ref={textAreaRef}
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Message Gemini..."
+                    placeholder="Message Bot..."
                     rows={1}
-                    className="w-full resize-none p-3 bg-transparent text-lg text-gray-800 focus:outline-none overflow-hidden"
+                    className="w-full resize-none p-3 bg-transparent text-lg text-white focus:outline-none overflow-hidden"
                 />
 
                 {/* Send Button */}
@@ -139,16 +139,12 @@ function Chat() {
                     `}
                     title="Send message"
                 >
-                    {/* Basic Send Icon */}
+                    {/* Send Icon */}
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                      <path d="M12 19l9-7-9-7v14z" fill="currentColor"></path>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2 21l21-9L2 3v7l15 2-15 2z"></path>
                     </svg>
                 </button>
             </div>
-             <p className="text-xs text-gray-500 text-center mt-2">
-                Gemini may display inaccurate info, including about people, so double-check its responses.
-            </p>
         </div>
       </div>
     </div>
